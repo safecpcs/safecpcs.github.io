@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Chat</title>
+    <style>
+        #chat-container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #chat-messages {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value;
+            if (message.trim() === "") {
+                alert("Please enter a message.");
+                return;
+            }
+            appendMessage("You", message);
+            messageInput.value = "";
+            // You can send this message to a server for further processing or storage
+        }
+
+        function appendMessage(sender, message) {
+            var chatMessages = document.getElementById("chat-messages");
+            var messageElement = document.createElement("div");
+            messageElement.textContent = sender + ": " + message;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to bottom
+        }
+    </script>
+</body>
+</html>
